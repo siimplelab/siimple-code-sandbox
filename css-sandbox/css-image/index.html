@@ -8,13 +8,36 @@
   <link rel="stylesheet" href="style.scss">
 </head>
 <body>
+  <a href="/">Go home</a>
   <h2>
     CSS Image - Wrapping and constraining 
   </h2>
-  <div class="image-container">
+  <h3>Problems</h3>
+  <ul>
+    <li>Need to make images responsive(fluid)</li>
+    <li>Need to keep the aspect ratio of images</li>
+    <li>Images have its own modeling style
+      <ul>
+        <li>
+          (it keeps its aspect ratio and try to expand not fit)</li>
+        </li>
+      </ul>
+  </ul>
+  <h3>Solution</h3>
+  <ul>
+    <li>Set a wrapper for an image to manipulate images</li>
+    <li>Give an image inside a wrapper 'width: 100%' to make it fluid</li>
+    <li>Use 'aspect-ratio' to keep the aspect ratio</li>
+    <li>Edit an image for the best intended result</li>
+    <li>Use 'overflow' and 'object-*' properties to edid visual style of image</li>
+  </ul>
     <div class="image-wrapper">
       <img src="https://images.unsplash.com/photo-1673932238539-6a96d267c265?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60" alt="">
     </div>
-  </div>
+  <h2>CSS Image - Use image as darken background</h2>
+  <ul>
+    <li>Set wrapper to have background color with black</li>
+    <li>Then make the image inside wrapper transparent with opacity</li>
+  </ul>
 </body>
 </html>
