@@ -1,0 +1,18 @@
+html {
+  font-family: sans-serif;
+}
+
+.image-wrapper {
+  max-width: 100%;
+  overflow: hidden;
+  background-color: black; 
+
+  img {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.5;
+    
+  }
+}
