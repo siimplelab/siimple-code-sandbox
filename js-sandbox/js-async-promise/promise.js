@@ -28,6 +28,7 @@ promise.then(value => {
 // * finally: 성공/실패 상관 없이 실행
 
 // * 3. Promise chaining
+// 메소드 체이닝은 기본적으로 리턴값을 다음 메소드에 반환
 const fetchNumber = new Promise((resolve, reject) => {
   setTimeout(() => resolve(1), 1000);
 })
@@ -50,6 +51,7 @@ const getHen = () =>
 const getEgg = hen =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(`${hen} => 'Egg'`), 1000);
+    // setTimeout(() => reject(new Error('ERROR')), 1000);
   });
 const cook = egg => 
   new Promise((resolve, reject) => {
@@ -61,5 +63,13 @@ const cook = egg =>
 //   .then(chicken => getEgg(chicken))
 //   .then(egg => console.log(egg))
 
-getHen().
-  then(getEgg);  
+getHen()
+  .then(getEgg)
+  .catch(error => {
+    return 'ERR';
+  })
+  .then(cook)
+  .then(console.log)
+  .catch(console.log);  
+
+// * Callback Hell Refactoring
