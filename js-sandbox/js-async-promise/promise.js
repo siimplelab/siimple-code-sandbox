@@ -102,8 +102,20 @@ const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const password = prompt('enter yout password');
 userStorage.loginUser(id, password)
-  .then(userStorage.getRoles)
-  .then((user) => {alert(`Hello ${user.name}, you have a ${user.role} role`)})
+  // .then(user => console.log(`${user} here`))
+  .then(user => { return userStorage.getRoles(user) })
+  // .then((user) => { userStorage.getRoles(user) })
+  // .then(console.log)
+  .then(userWithRole => { alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`)})
   .catch(console.log);
   
 // alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
+
+// JS method chaining
+const chainTest = "";
+function chainFunction() {
+  return 1;
+}
+const functionValue = chainFunction();
+
+console.log(functionValue);
