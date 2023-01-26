@@ -102,8 +102,8 @@ const userStorage = new UserStorage();
 const id = prompt('enter your id');
 const password = prompt('enter yout password');
 userStorage.loginUser(id, password)
-  .then(userStorage.getRoles(id))
-  .then(alert(`Hello ${id.name}, you have a ${id.role} role`))
-  .catch(console.log(Error));
+  .then(userStorage.getRoles)
+  .then((user) => {alert(`Hello ${user.name}, you have a ${user.role} role`)})
+  .catch(console.log);
   
 // alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
