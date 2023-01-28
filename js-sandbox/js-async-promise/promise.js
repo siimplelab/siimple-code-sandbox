@@ -112,6 +112,7 @@ userStorage.loginUser(id, password)
 // alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
 
 // JS method chaining
+// then 활용 비동기 통신 메소드 채이닝 시 인자가 없을 경우 기본값으로 이전에 매소드의 리턴값을 인자로 받음
 const chainTest = "";
 async function chainFunction() {
   return 1;
@@ -130,3 +131,11 @@ const awaitFunction = async () => {
 awaitFunction();
 
 // console.log(functionValue);
+
+const methodChainingTest = function methodOne() {
+  return 1;
+}
+
+function methodTwo() {
+  return 2;
+}
