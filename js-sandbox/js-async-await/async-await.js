@@ -44,6 +44,15 @@ pickFruits().then(console.log);
 // pickFruitsWithAwait().then(console.log);
 
 // * return test
-const returnTest = () => { return 1} ;
-const returnTestValue = returnTest;
+const returnTestAnonymousArrow = () => { return 1 };
+const returnTestAnonymous = function() {
+  return 'hi';
+}
+function returnTest() {
+  return "I'm returned"; 
+}
+console.log(returnTest());
+const returnTestValue = returnTest();
 console.log(returnTestValue);
+console.log(returnTestAnonymous());
+console.log(returnTestAnonymousArrow());
