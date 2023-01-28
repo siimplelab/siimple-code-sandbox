@@ -113,9 +113,15 @@ userStorage.loginUser(id, password)
 
 // JS method chaining
 const chainTest = "";
-function chainFunction() {
+async function chainFunction() {
   return 1;
 }
 const functionValue = chainFunction();
 
-console.log(functionValue);
+functionValue
+  .then((elem) => elem + 1)
+  .then(console.log);
+
+
+  
+// console.log(functionValue);
