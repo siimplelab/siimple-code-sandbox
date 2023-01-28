@@ -34,8 +34,19 @@ function pickFruits() {
 }
 
 async function pickFruitsWithAwait() {
+  // try { 
   const apple = await getApple();
   const banana = await getBanana();
+  return `${apple} + ${banana}`;
+  // } catch() {
+  // }
+}
+
+async function pickFruitsWithAwaitSecond() {
+  const applePromise = getApple();
+  const bananaPromise = getBanana();
+  const apple = await applePromise;
+  const banana = await bananaPromise;
   return `${apple} + ${banana}`;
 }
 
@@ -56,3 +67,17 @@ const returnTestValue = returnTest();
 console.log(returnTestValue);
 console.log(returnTestAnonymous());
 console.log(returnTestAnonymousArrow());
+
+// * 3. useful APIs
+function pickAllFruits() {
+  return Promise.all([getApple(), getBanana()])
+    .then(fruits => fruits.join(' x '));
+}
+
+pickAllFruits().then(console.log);
+
+function pickOnlyOne() {
+  return Promise.race([getApple(), getBanana()]);
+}
+
+pickOnlyOne().then(console.log);
