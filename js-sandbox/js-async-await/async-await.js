@@ -18,19 +18,32 @@ function delay(ms) {
 }
 
 async function getApple() {
-  await delay(3000);
+  await delay(1000);
   return 'Apple';
 }
 
 async function getBanana() {
-  await delay(3000);
+  await delay(1000);
   return 'Banana';
 }
 
 function pickFruits() {
   return getApple().then(apple => {
-    return getBanana().then(banana => `${apple} ${banana}`);
+    return getBanana().then(banana => `${apple} + ${banana}`);
   })
 }
 
+async function pickFruitsWithAwait() {
+  const apple = await getApple();
+  const banana = await getBanana();
+  return `${apple} + ${banana}`;
+}
+
 pickFruits().then(console.log);
+// console.log(pickFruitsWithAwait());
+// pickFruitsWithAwait().then(console.log);
+
+// * return test
+const returnTest = () => { return 1} ;
+const returnTestValue = returnTest;
+console.log(returnTestValue);
