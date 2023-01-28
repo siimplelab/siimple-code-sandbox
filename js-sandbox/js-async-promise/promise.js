@@ -122,6 +122,11 @@ functionValue
   .then((elem) => elem + 1)
   .then(console.log);
 
+const awaitFunction = async () => {
+  let res = await functionValue;
+  console.log(res);
+}
 
-  
+awaitFunction();
+
 // console.log(functionValue);
