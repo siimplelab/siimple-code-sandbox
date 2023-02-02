@@ -19,12 +19,12 @@ const promise = new Promise((resolve, reject) => {
 promise.then(value => {
   console.log(value);
 })
-.catch(error => {
-  console.log(error);
-})
-.finally(() => {
-  console.log('finally');
-});
+  .catch(error => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log('finally');
+  });
 // * finally: 성공/실패 상관 없이 실행
 
 // * 3. Promise chaining
@@ -34,14 +34,14 @@ const fetchNumber = new Promise((resolve, reject) => {
 })
 
 fetchNumber
-.then(num => num * 2)
-.then(num => num * 3)
-.then(num => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(num - 1), 1000);
-  });
-})
-.then(num => console.log(num));
+  .then(num => num * 2)
+  .then(num => num * 3)
+  .then(num => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(num - 1), 1000);
+    });
+  })
+  .then(num => console.log(num));
 
 // * 4. Error Handling
 const getHen = () =>
@@ -53,7 +53,7 @@ const getEgg = hen =>
     setTimeout(() => resolve(`${hen} => 'Egg'`), 1000);
     // setTimeout(() => reject(new Error('ERROR')), 1000);
   });
-const cook = egg => 
+const cook = egg =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(`${egg} => 'Fried`), 1000);
   });
@@ -70,6 +70,72 @@ getHen()
   })
   .then(cook)
   .then(console.log)
-  .catch(console.log);  
+  .catch(console.log);
 
 // * Callback Hell Refactoring
+class UserStorage {
+  loginUser(id, password) {
+    return new Promise((resolve, reject) => {
+      if (
+        (id === 'ellie' && password === 'dream') ||
+        (id === 'coder' && password === 'academy')
+      ) {
+        resolve(id);
+      } else {
+        reject(new Error('not found'));
+      }
+    });
+  }
+
+  getRoles(user) {
+    return new Promise((resolve, reject) => {
+      if (user === 'ellie') {
+        resolve({ name: 'ellie', role: 'admin' });
+      } else {
+        reject(new Error('no access'));
+      }
+    });
+  }
+}
+
+const userStorage = new UserStorage();
+const id = prompt('enter your id');
+const password = prompt('enter yout password');
+userStorage.loginUser(id, password)
+  // .then(user => console.log(`${user} here`))
+  .then(user => { return userStorage.getRoles(user) })
+  // .then((user) => { userStorage.getRoles(user) })
+  // .then(console.log)
+  .then(userWithRole => { alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`)})
+  .catch(console.log);
+  
+// alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
+
+// JS method chaining
+// then 활용 비동기 통신 메소드 채이닝 시 인자가 없을 경우 기본값으로 이전에 매소드의 리턴값을 인자로 받음
+const chainTest = "";
+async function chainFunction() {
+  return 1;
+}
+const functionValue = chainFunction();
+
+functionValue
+  .then((elem) => elem + 1)
+  .then(console.log);
+
+const awaitFunction = async () => {
+  let res = await functionValue;
+  console.log(res);
+}
+
+awaitFunction();
+
+// console.log(functionValue);
+
+const methodChainingTest = function methodOne() {
+  return 1;
+}
+
+function methodTwo() {
+  return 2;
+}
