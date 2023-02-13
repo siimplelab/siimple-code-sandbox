@@ -56,6 +56,7 @@ const userArrowWrapReturned = userArrowWrap();
 console.log(userArrowWrapReturned.getFullName())
 // * 화살표 함수의 경우 호출하는 객체를 참조하는 것이 아니라 선언될 때의 객체만을 지속적으로 참조함
 
+<<<<<<< HEAD
 /* ANCHOR PROTOTYPE ---------------------------------------------------------------- */
 // 객체 생성 함수를 활용한 객체 생성
 // PROTOTYPE을 활용한 객체의 속성 및 메소드 추가
@@ -74,3 +75,22 @@ const neoUser = new User('John', 'Park');
 
 console.log(neoUser);
 console.log(newUser.getFullName());
+=======
+// * this 더 이해하기
+const timer = {
+  title: 'TIMER',
+  timeout() {
+    console.log(this.title);
+    // * Normal function
+    // setTimeout(function () {
+    //   console.log(this.title); // not seeing timer, instead it sees setTimeout function object
+    // }, 1000)
+    // * Arrow function
+    setTimeout(() => {
+      console.log(this.title); // it refers to lexical scope, so it sees timer wihout being capsulated by setTimeout
+    }, 1000);
+  }
+}
+
+timer.timeout();
+>>>>>>> 37a207ac1a7d489475a6179fb7379b5120df50c9
