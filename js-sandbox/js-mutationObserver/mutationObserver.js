@@ -1,19 +1,18 @@
-'use strict';
+// select the target node
+var target = document.querySelector('#parent');
 
-// * MutationObserver is a built-in object that observes a DOM element and fires a callback when it detects a change
+// create an observer instance
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        console.log(mutation.type);
+    });
+});
 
-// * Syntax
-// let observer = new MutationObserver(callback);
-// observer.observe(node, config);
+// configuration of the observer:
+var config = { attributes: true, childList: true, characterData: true }
 
-// config is an objet with boolean options "what kind of changes to react on"
+// pass in the target node, as well as the observer options
+observer.observe(target, config);
 
-// * After any changes, the callback is executed: changes are passed in the first argument as a list of MutationRecord objects, and the observer itself as the second argument
-
-// * MutationRecord object have properties:
-// type
-// target 
-// addedNodes / removedNodes
-// previousSibling / nextSibling
-// attributeName / attributeNamespace / oldValue
-// ...
+// later, you can stop observing
+// observer.disconnect();
