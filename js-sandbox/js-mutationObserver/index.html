@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div id="parent">
+    parent
+    <div id="child">child</div>
+  </div>
+  <script src="mutationObserver.js"></script> -->
+  <div id="parent">
+    parent
+  </div>
+
+  <script>
+    // Select the node that will be observed for mutations
+    const parent = document.getElementById('parent');
+
+    // Crate a new observer instance
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.id === 'child') {
+            console.log('Child is loaded');
+          }
+        })
+      })
+    })
+
+    const config = { childList: true };
+
+    observer.observe(parent, config);
+
+    // Add the child element to the DOM after a delay
+    setTimeout(function() {
+      const child = document.createElement('div');
+      child.id = 'child';
+      child.textContent = 'child';
+      parent.appendChild(child);
+    }, 2000);
+  </script>
+</body>
+</html>
