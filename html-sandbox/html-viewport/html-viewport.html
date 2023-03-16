@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <meta name="viewport" content="width=1024, initial-scale=1.0"> -->
+    <meta name="viewport" />
+    <title>Document</title>
+    <style>
+      body {
+        background: green;
+      }
+
+      .window-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .container {
+        /* width: 1400px; */
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      * Document related to the code: https://www.notion.so/hyungsub/UXE-responsive-8855d065c0d445f4b49ee9dc6ffe4a0f?pvs=4
+    </p>
+    <div class="window-wrapper"></div>
+    <div class="container"></div>
+    <button data-name="buttonToChangeViewport">Change viewport</button>
+    <script>
+      const metaViewport = document.querySelector('meta[name="viewport"]');
+      const windowWrapper = document.querySelector(".window-wrapper");
+      const containerWidth = document.querySelector(".container");
+
+      function checkSize() {
+        windowWrapper.innerHTML = `
+        <h1>Window size checking: ${window.innerWidth}</h1>
+      `;
+        containerWidth.innerHTML = `
+        <h1>Container size checking: ${containerWidth.offsetWidth}</h1>
+      `;
+      }
+
+      window.addEventListener("load", () => {
+        checkSize();
+        // detectMediaSize()
+      });
+
+      window.addEventListener("resize", () => {
+        checkSize();
+        // detectMediaSize()
+      });
+
+      let viewportState = false;
+
+      document.querySelector('[data-name="buttonToChangeViewport"]').addEventListener('click', () => {
+        if (viewportState) {
+          metaViewport.setAttribute("contnet", "width=768, initial-scale='1.0'")
+          setTimeout(() => {
+            checkSize();
+            // detectMediaSize()
+          },0 )
+          return viewportState = false;
+        } if (!viewportState) {
+          metaViewport.setAttribute("contnet", "width=1240, initial-scale='1.0'")
+          setTimeout(() => {
+            checkSize();
+            // detectMediaSize()
+          },0 )
+          return viewportState = true;
+        }
+          
+      })
+
+      // function detectMediaSize() {
+      //   if (
+      //     window.matchMedia("(min-width: 0px) and (max-width: 414px)").matches
+      //   ) {
+      //     metaViewport.setAttribute("contnet", "width=768");
+      //     console.log('Mobile');
+      //   } else if (
+      //     window.matchMedia("(min-width: 0px) and (max-width: 768px)").matches
+      //   ) {
+      //     console.log('Tablet');
+      //   } else {
+      //     console.log('PC');
+      //   }
+      // }
+    </script>
+  </body>
+</html>
