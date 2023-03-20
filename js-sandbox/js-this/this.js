@@ -56,6 +56,25 @@ const userArrowWrapReturned = userArrowWrap();
 console.log(userArrowWrapReturned.getFullName())
 // * 화살표 함수의 경우 호출하는 객체를 참조하는 것이 아니라 선언될 때의 객체만을 지속적으로 참조함
 
+/* ANCHOR PROTOTYPE ---------------------------------------------------------------- */
+// 객체 생성 함수를 활용한 객체 생성
+// PROTOTYPE을 활용한 객체의 속성 및 메소드 추가
+function User(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+}
+// 객체 생성 함수의 메소드 생성 시에는 화살표 함수를 쓰면 this가 바라보는 대상이 달라질 수 있음
+// 객체 생성 함수의 메소드 생성 시에는 일반 함수 사용 필요
+User.prototype.getFullName = function() {
+  return `${this.firstName} ${this.lastName}`
+}
+
+const newUser = new User('James', 'Park');
+const neoUser = new User('John', 'Park');
+
+console.log(neoUser);
+console.log(newUser.getFullName());
+
 // * this 더 이해하기
 const timer = {
   title: 'TIMER',
